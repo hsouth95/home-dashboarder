@@ -1,36 +1,61 @@
-import React, { useEffect } from "react";
+import React from 'react';
+import RGL, { WidthProvider } from 'react-grid-layout';
 
-import { GridStack } from 'gridstack';
-import 'gridstack/dist/gridstack.min.css';
-import 'gridstack/dist/gridstack-h5.js';
 import './edit.css';
+import jsonData from "../data/dashboard.json";
+
+const ReactGridLayout = WidthProvider(RGL);
 
 class EditPage extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {layout: []}
+    }
 
     componentDidMount() {
-        this.grid = GridStack.init({
-            minRow: 1,
-            cellHeight: "70px"
-        });
+        if(jsonData && jsonData.dashboards) {
+            let keys = [];
+            for(let dashboard of jsonData.dashboards) {
+                let gridDashboard = {
+                    i: dashboard.name,
+                    x: dashboard.x,
+                    y: dashboard.y,
+                    w: dashboard.width,
+                    h: dashboard.height
+                };
 
-        this.grid.addWidget({
-            x: 0,
-            y: 0,
-            h: 1,
-            w: 2,
-            id: 0
-        });
+                keys.push(gridDashboard);
+            }
+            
+            this.setState({layout: keys});
+        }
+    }
 
-        this.grid.addWidget({
-            x: 1, y: 0, id: 1
-        });
+    generateKeys() {
+        if (this.state.layout && this.state.layout.length > 0) {
+            return this.state.layout.map((item) => {
+                return (
+                    <div key={item.i}>
+                        <span className="text">{item.i}</span>
+                    </div>
+                );
+            });
+        }
     }
 
     render() {
+        if(this.state.layout.length === 0) {
+            return (
+                <h1>Loading</h1>
+            )
+        }
+
         return (
             <div className="Edit">
-                <div class="grid-stack">
-                </div>
+                <ReactGridLayout className="layout" layout={this.state.layout} cols={3}>
+                    {this.generateKeys()}
+                </ReactGridLayout>
             </div>
         );
     }

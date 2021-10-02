@@ -1,0 +1,13 @@
+.layout {
+
+}
+
+.layout > div {
+    background-color: gray;
+    width: 33%;
+    height: 33%;
+}
+
+.layout > div:hover {
+    cursor: move;
+}
