@@ -19,7 +19,7 @@ class EditPage extends React.Component {
     constructor(props){
         super(props);
         this.cachedDashboards = {};
-        this.state = {layout: []}
+        this.state = {layout: []};
 
         this.onLayoutChange = this.onLayoutChange.bind(this);
         this.saveDashboard = this.saveDashboard.bind(this);
@@ -30,7 +30,7 @@ class EditPage extends React.Component {
         const data = await response.json();
 
         if(data && data.dashboards) {
-            this.cachedDashboards = data.dashboards;
+            this.cachedDashboards = data;
 
             let keys = [];
             for(let dashboard of data.dashboards) {
@@ -69,27 +69,41 @@ class EditPage extends React.Component {
 
     async saveDashboard() {
         let isChanges = false;
-        for (let dashboard of this.cachedDashboards) {
-            let updatedDashboard = this.state.layout.find(x => x.id === dashboard.id);
 
-            for (let attr of this.visualAttributes){
-                if (updatedDashboard[attr] !== dashboard[attr]) {
-                    dashboard[attr] = updatedDashboard[attr];
-                    isChanges = true;
-                }
+        for (let dashboard of this.cachedDashboards.dashboards) {
+            let updatedDashboard = this.state.layout.find(x => x.i === dashboard.name);
+
+            if(updatedDashboard.h !== dashboard.height) {
+                dashboard.height = updatedDashboard.h;
+                isChanges = true;
+            }
+
+            if(updatedDashboard.w !== dashboard.width) {
+                dashboard.width = updatedDashboard.w;
+                isChanges = true;
+            }
+
+            if(updatedDashboard.x !== dashboard.x) {
+                dashboard.x = updatedDashboard.x;
+                isChanges = true;
+            }
+
+            if(updatedDashboard.y !== dashboard.y) {
+                dashboard.y = updatedDashboard.y;
+                isChanges = true;
             }
         }
 
         if(isChanges) {
             const req = await fetch("/dashboards", {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
                 body: JSON.stringify(this.cachedDashboards)
             });
-            //const res = await req.json();
+            const res = await req.json();
         }
 
     }

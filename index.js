@@ -4,6 +4,7 @@ const port = process.env.PORT || 5000;
 const fs = require("fs");
 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
@@ -18,7 +19,7 @@ app.get("/dashboards", (req, res) => {
     });
 });
 
-app.post("/dashboards", (req, res) => {
-    console.log(JSON.parse(req.body));
+app.put("/dashboards", (req, res) => {
+    console.log(req.body.dashboards);
     res.status(200);
 });

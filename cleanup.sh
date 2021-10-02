@@ -1,0 +1,1 @@
+cp ./data/dashboard-original.json ./data/dashboards.json
