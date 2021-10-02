@@ -1,12 +1,15 @@
 .db-container {
     margin: 2rem;
     display: grid;
+    height: 90vh;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 15px;
 }
 
-.db-container > div {
-
+.db {
+  border: solid;
 }
 
 .db-h1 {
