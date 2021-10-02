@@ -44,6 +44,14 @@ class EditPage extends React.Component {
         }
     }
 
+    onLayoutChange(layout) {
+        this.setState({layout});
+    }
+
+    saveDashboard() {
+        
+    }
+
     render() {
         if(this.state.layout.length === 0) {
             return (
@@ -53,7 +61,8 @@ class EditPage extends React.Component {
 
         return (
             <div className="Edit">
-                <ReactGridLayout className="layout" layout={this.state.layout} cols={3}>
+                <button onClick={this.saveDashboard}>Save</button>
+                <ReactGridLayout className="layout" layout={this.state.layout} onLayoutChange={this.onLayoutChange} cols={3}>
                     {this.generateKeys()}
                 </ReactGridLayout>
             </div>
