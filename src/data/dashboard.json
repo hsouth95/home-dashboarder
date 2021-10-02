@@ -2,8 +2,27 @@
     "dashboards": [
         {
             "name": "Apples",
-            "height": 100,
-            "width": 100
+            "height": 1,
+            "width": 2,
+            "position": 1
+        },
+        {
+            "name": "Banana",
+            "height": 1,
+            "width": 1,
+            "position": 2
+        },
+        {
+            "name": "Orange",
+            "height": 2,
+            "width": 1,
+            "position": 3
+        },
+        {
+            "name": "Passionfruit",
+            "height": 2,
+            "width": 1,
+            "position": 1
         }
     ]
 }

@@ -14,7 +14,7 @@ class Dashboards extends Component {
 
     render(){
         return (
-        <div id="dashboards">
+        <div id="dashboards" class="db-container">
             {this.state.dashboards.map(dashboard => (
                 <Dashboard {...dashboard} />
             ))}

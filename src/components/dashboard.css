@@ -1,0 +1,29 @@
+.db-container {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.db-container > div {
+
+}
+
+.db-h1 {
+  grid-row: auto / span 1;
+}
+.db-h2 {
+  grid-row: auto / span 2;
+}
+.db-h3 {
+  grid-row: auto / span 3;
+}
+.db-w1 {
+  grid-column: auto / span 1;
+}
+.db-w2 {
+  grid-column: auto / span 2;
+}
+.db-w3 {
+  grid-column: auto / span 3;
+}

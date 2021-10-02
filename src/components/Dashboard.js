@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./dashboard.css";
 
 
 class Dashboard extends Component {
@@ -12,9 +13,9 @@ class Dashboard extends Component {
         };
     }
 
-    render(){
+    render() {
         return (
-            <div id="dashboard" height={this.state.height} width={this.state.width}>
+            <div className={`db db-h${this.state.height} db-w${this.state.width}`}>
                 <h1>{this.state.name}</h1>
             </div>
         );
