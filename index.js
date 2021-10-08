@@ -10,9 +10,6 @@ app.use(express.urlencoded({extended: true}));
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get("/plugins", (req, res) => {
-    // Add query command for plugin 
-    // Add endpoint on module for getting data
-
     if(Object.keys(req.query).length === 0) {
         // If no plugin query then we return the full list of plugins available
         res.json(Object.keys(plugins));
@@ -22,6 +19,8 @@ app.get("/plugins", (req, res) => {
         } else {
             res.send("No plugin of name: " + req.query.plugin);
         }
+    } else {
+        // Not an accepted query param
     }
 });
 

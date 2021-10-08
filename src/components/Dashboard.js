@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import * as Plugins from '../plugins';
+
 import "./dashboard.css";
 
 
@@ -16,7 +18,7 @@ class Dashboard extends Component {
     render() {
         return (
             <div className={`db db-h${this.state.height} db-w${this.state.width}`}>
-                <h1>{this.state.name}</h1>
+                <Plugins.HelloWorldElement />
             </div>
         );
     }
