@@ -12,7 +12,17 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.get("/plugins", (req, res) => {
     // Add query command for plugin 
     // Add endpoint on module for getting data
-    res.send(plugins.helloworld.helloworld());
+
+    if(Object.keys(req.query).length === 0) {
+        // If no plugin query then we return the full list of plugins available
+        res.json(Object.keys(plugins));
+    } else if (req.query.plugin) {
+        if(plugins[req.query.plugin]) {
+            res.send(plugins[req.query.plugin].get());
+        } else {
+            res.send("No plugin of name: " + req.query.plugin);
+        }
+    }
 });
 
 app.get("/dashboards", (req, res) => {

@@ -1,6 +1,6 @@
 let helloworld = {};
 
-helloworld.helloworld = function() {
+helloworld.get = function() {
     return "hello world";    
 }
 
