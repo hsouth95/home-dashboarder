@@ -9,17 +9,21 @@ app.use(express.urlencoded({extended: true}));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-app.get("/plugins", (req, res) => {
+app.get("/plugins", async (req, res) => {
     if(Object.keys(req.query).length === 0) {
         // If no plugin query then we return the full list of plugins available
+        console.log("Showing all plugins");
         res.json(Object.keys(plugins));
     } else if (req.query.plugin) {
         if(plugins[req.query.plugin]) {
-            res.send(plugins[req.query.plugin].get());
+            console.log("Returning plugin " + req.query.plugin + " data");
+            res.send(await plugins[req.query.plugin].get());
         } else {
+            console.log("Couldn't find plugin");
             res.send("No plugin of name: " + req.query.plugin);
         }
     } else {
+        console.log("No accepted query param");
         // Not an accepted query param
     }
 });

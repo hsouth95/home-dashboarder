@@ -1,7 +1,9 @@
 const helloworld = require("./helloworld/helloworld");
+const footballscores = require("./footballscores/footballscores");
 
 const plugins = {
-    "helloworld": helloworld
+    "helloworld": helloworld,
+    "footballscores": footballscores
 };
 
 module.exports = plugins;
