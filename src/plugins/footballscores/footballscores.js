@@ -17,17 +17,38 @@ let footballteams = {
 };
 
 getFootballScores = async function(team) {
-    let score = {};
-
+    if(team in footballscores) {
+        return footballscores[team];
+    }
+    
     for(const [league, teams] of Object.entries(footballteams.leagues)) {
         if(team in teams) {
             try {
-                console.log(teams[team]);
                 const {data} = await axios.get(teams[team]);
                 const $ = cheerio.load(data);
                 const scoreElement = $("div#meta strong:contains('Last Match')").parent();
-                const score = $(scoreElement).text();
-                return score;
+
+                // We expect this to be in format 'Last Match: <our team score>-<other team score> vs Other Team Name'
+                let scoreText = $(scoreElement).text();
+                scoreText = scoreText.replace("Last Match: ", "");
+
+                // Remove result (e.g. Draw, Win)
+                scoreText = scoreText.substr(scoreText.indexOf(" ") + 1);
+
+                let homeAwayScore = scoreText.split(" ")[0];
+
+                // This uses an endash, be warned!
+                homeAwayScore = homeAwayScore.split("–");
+                let lastTeamScore = {
+                    "homeScore": homeAwayScore[0],
+                    "awayScore": homeAwayScore[1],
+                    // Get everything after the 'vs' to get team name
+                    "awayTeam": scoreText.split(" ").slice(2).join(" ")
+                };
+
+                footballscores[team] = lastTeamScore;
+
+                return lastTeamScore;
             } catch(error) {
                 console.error(error);
                 return "0";
@@ -63,7 +84,7 @@ getFootballTeams = async function() {
 footballscores.get = async function(config) {
     await getFootballTeams();
 
-    return await getFootballScores("Liverpool");
+    return await getFootballScores(config);
 }
 
 module.exports = footballscores;

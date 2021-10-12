@@ -17,7 +17,12 @@ app.get("/plugins", async (req, res) => {
     } else if (req.query.plugin) {
         if(plugins[req.query.plugin]) {
             console.log("Returning plugin " + req.query.plugin + " data");
-            res.send(await plugins[req.query.plugin].get());
+
+            if(req.query.config) {
+                res.send(await plugins[req.query.plugin].get(req.query.config));
+            } else {
+                res.send(await plugins[req.query.plugin].get());
+            }
         } else {
             console.log("Couldn't find plugin");
             res.send("No plugin of name: " + req.query.plugin);

@@ -16,9 +16,10 @@ class Dashboard extends Component {
     }
 
     render() {
+        let DashboardElement = Plugins.PLUGIN_MAP[this.props.plugin];
         return (
             <div className={`db db-h${this.state.height} db-w${this.state.width}`}>
-                <Plugins.HelloWorldElement />
+                <DashboardElement {...this.props}/>
             </div>
         );
     }
