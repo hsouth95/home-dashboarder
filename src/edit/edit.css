@@ -1,9 +1,23 @@
+.layout {
+    margin-left: 10%;
+}
+
 .layout > div {
-    background-color: gray;
+    background-color: #DDD;
     width: 33%;
     height: 33%;
 }
 
 .layout > div:hover {
     cursor: move;
+}
+
+.plugin-manager {
+    height: 100%;
+    width: 10%;
+    top: 0px;
+    left: 0px;
+    background-color: #DDD;
+    position: absolute;
+    padding: 5px;
 }

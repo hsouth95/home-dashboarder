@@ -5,28 +5,33 @@
             "height": 1,
             "width": 2,
             "x": 0,
-            "y": 1
+            "y": 1,
+            "plugin": "footballscores",
+            "config": "Liverpool"
         },
         {
             "name": "Banana",
             "height": 1,
             "width": 1,
             "x": 1,
-            "y": 1
+            "y": 1,
+            "plugin": "helloworld"
         },
         {
             "name": "Orange",
             "height": 2,
             "width": 1,
             "x": 2,
-            "y": 1
+            "y": 1,
+            "plugin": "helloworld"
         },
         {
             "name": "Passionfruit",
             "height": 2,
             "width": 1,
             "x": 0,
-            "y": 2
+            "y": 2,
+            "plugin": "helloworld"
         }
     ]
 }

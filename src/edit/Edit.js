@@ -1,6 +1,8 @@
 import React from 'react';
 import RGL, { WidthProvider } from 'react-grid-layout';
 
+import PluginSelector from './PluginSelector';
+
 import './edit.css';
 
 const ReactGridLayout = WidthProvider(RGL);
@@ -118,7 +120,9 @@ class EditPage extends React.Component {
         return (
             <div className="Edit">
                 <button onClick={this.saveDashboard}>Save</button>
-                <ReactGridLayout className="layout" layout={this.state.layout} onLayoutChange={this.onLayoutChange} cols={3}>
+                <PluginSelector />
+                <ReactGridLayout className="layout" layout={this.state.layout} onLayoutChange={this.onLayoutChange}
+                cols={3}>
                     {this.generateKeys()}
                 </ReactGridLayout>
             </div>
